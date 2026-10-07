@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <base target="_top">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #f2f4f7;
+        color: #101828;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      header {
+        background: white;
+        border-bottom: 1px solid #e4e7ec;
+      }
+
+      .header {
+        width: min(1250px, 100%);
+        margin: auto;
+        padding: 22px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 27px;
+      }
+
+      header p {
+        margin: 6px 0 0;
+        color: #667085;
+      }
+
+      main {
+        width: min(1250px, 100%);
+        margin: auto;
+        padding: 22px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        padding: 18px;
+        background: white;
+        border: 1px solid #e4e7ec;
+        border-radius: 12px;
+      }
+
+      .card-titulo {
+        color: #667085;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .card-valor {
+        margin-top: 10px;
+        font-size: 31px;
+        font-weight: bold;
+      }
+
+      .painel {
+        margin-top: 20px;
+        background: white;
+        border: 1px solid #e4e7ec;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .painel-topo {
+        padding: 17px;
+        border-bottom: 1px solid #e4e7ec;
+      }
+
+      .painel-topo h2 {
+        margin: 0;
+        font-size: 19px;
+      }
+
+      .conteudo {
+        padding: 18px;
+      }
+
+      .formulario {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+        align-items: end;
+      }
+
+      .campo label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 12px;
+        color: #475467;
+        font-weight: bold;
+      }
+
+      input, select, button {
+        width: 100%;
+        min-height: 41px;
+        border-radius: 7px;
+        border: 1px solid #d0d5dd;
+        font-size: 14px;
+      }
+
+      input, select {
+        padding: 0 11px;
+        background: white;
+      }
+
+      button {
+        cursor: pointer;
+        padding: 0 14px;
+        font-weight: bold;
+      }
+
+      .principal {
+        background: #101828;
+        color: white;
+        border-color: #101828;
+      }
+
+      .secundario {
+        background: white;
+        color: #344054;
+      }
+
+      .perigo {
+        background: white;
+        color: #b42318;
+      }
+
+      .mensagem {
+        margin-top: 14px;
+        padding: 12px;
+        border-radius: 8px;
+        background: #f9fafb;
+        color: #475467;
+      }
+
+      .amarelo-msg {
+        background: #fffaeb;
+        color: #b54708;
+      }
+
+      .verde-msg {
+        background: #ecfdf3;
+        color: #067647;
+      }
+
+      .vermelho-msg {
+        background: #fef3f2;
+        color: #b42318;
+      }
+
+      .escaninhos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 12px;
+        padding: 18px;
+      }
+
+      .escaninho {
+        padding: 16px;
+        border: 1px solid #e4e7ec;
+        border-radius: 10px;
+      }
+
+      .escaninho-topo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .escaninho-nome {
+        font-weight: bold;
+      }
+
+      .escaninho-info {
+        display: grid;
+        gap: 6px;
+        margin-top: 12px;
+        color: #667085;
+        font-size: 13px;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 5px 8px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: bold;
+      }
+
+      .verde {
+        background: #ecfdf3;
+        color: #067647;
+      }
+
+      .vermelho {
+        background: #fef3f2;
+        color: #b42318;
+      }
+
+      .amarelo {
+        background: #fffaeb;
+        color: #b54708;
+      }
+
+      .cinza {
+        background: #f2f4f7;
+        color: #475467;
+      }
+
+      .tabela {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        min-width: 900px;
+        border-collapse: collapse;
+      }
+
+      th, td {
+        padding: 13px 16px;
+        text-align: left;
+        border-bottom: 1px solid #e4e7ec;
+        font-size: 13px;
+      }
+
+      th {
+        background: #f9fafb;
+        color: #667085;
+      }
+
+      .acoes {
+        display: flex;
+        gap: 6px;
+      }
+
+      .acoes button {
+        width: auto;
+        min-height: 31px;
+        font-size: 11px;
+      }
+
+      .vazio {
+        padding: 25px;
+        text-align: center;
+        color: #667085;
+      }
+
+      #atualizacao {
+        margin-top: 12px;
+        text-align: right;
+        color: #667085;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <h1>Sistema de Escaninhos</h1>
+        <p>RFID + PIN de 6 dígitos</p>
+      </div>
+    </header>
+    <main>
+      <section class="cards">
+        <div class="card">
+          <div class="card-titulo">ACESSOS HOJE</div>
+          <div id="acessosHoje" class="card-valor">0</div>
+        </div>
+        <div class="card">
+          <div class="card-titulo">AUTORIZADOS</div>
+          <div id="autorizadosHoje" class="card-valor">0</div>
+        </div>
+        <div class="card">
+          <div class="card-titulo">NEGADOS</div>
+          <div id="negadosHoje" class="card-valor">0</div>
+        </div>
+        <div class="card">
+          <div class="card-titulo">CARTÕES ATIVOS</div>
+          <div id="cartoesAtivos" class="card-valor">0</div>
+        </div>
+        <div class="card">
+          <div class="card-titulo">ESCANINHOS ONLINE</div>
+          <div id="escaninhosOnline" class="card-valor">0</div>
+        </div>
+      </section>
+      <section class="painel">
+        <div class="painel-topo">
+          <h2>Cadastrar cartão RFID</h2>
+        </div>
+        <div class="conteudo">
+          <div class="formulario">
+            <div class="campo">
+              <label>Nome</label>
+              <input id="nomeCartao" placeholder="Ex.: Codama">
+            </div>
+            <div class="campo">
+              <label>Escaninho</label>
+              <select id="escaninhoCartao"></select>
+            </div>
+            <button class="principal" onclick="iniciarCadastro()">Iniciar cadastro</button>
+            <button class="secundario" onclick="cancelarCadastro()">Cancelar</button>
+          </div>
+          <div id="mensagemCartao" class="mensagem">Informe o nome e escolha o escaninho.</div>
+        </div>
+      </section>
+      <section class="painel">
+        <div class="painel-topo">
+          <h2>Configurar PIN do escaninho</h2>
+        </div>
+        <div class="conteudo">
+          <div class="formulario">
+            <div class="campo">
+              <label>Escaninho</label>
+              <select id="escaninhoPin"></select>
+            </div>
+            <div class="campo">
+              <label>Novo PIN de 6 dígitos</label>
+              <input id="novoPin" type="password" inputmode="numeric" maxlength="6" placeholder="••••••">
+            </div>
+            <button class="principal" onclick="salvarPIN()">Salvar / alterar PIN</button>
+            <button class="perigo" onclick="removerPIN()">Remover PIN</button>
+          </div>
+          <div id="mensagemPin" class="mensagem">O PIN precisa possuir exatamente 6 números.</div>
+        </div>
+      </section>
+      <section class="painel">
+        <div class="painel-topo">
+          <h2>Escaninhos</h2>
+        </div>
+        <div id="listaEscaninhos" class="escaninhos"></div>
+      </section>
+      <section class="painel">
+        <div class="painel-topo">
+          <h2>Cartões cadastrados</h2>
+        </div>
+        <div class="tabela">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>UID</th>
+                <th>Escaninho</th>
+                <th>Cadastro</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaCartoes"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="painel">
+        <div class="painel-topo">
+          <h2>Acessos recentes</h2>
+        </div>
+        <div class="tabela">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Nome</th>
+                <th>UID</th>
+                <th>Escaninho</th>
+                <th>Método</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaAcessos"></tbody>
+          </table>
+        </div>
+      </section>
+      <div id="atualizacao">Carregando...</div>
+    </main>
+    <script>
+      let dadosAtuais = null;
+      let carregando = false;
+
+      function carregar() {
+        if (carregando) return;
+        carregando = true;
+        google.script.run
+            .withSuccessHandler(function(dados) {
+              carregando = false;
+              dadosAtuais = dados;
+              renderizar(dados);
+            })
+            .withFailureHandler(function(erro) {
+              carregando = false;
+              document.getElementById("atualizacao").textContent = "Erro: " + erro.message;
+            })
+            .obterDadosDashboard();
+      }
+
+      function renderizar(dados) {
+        document.getElementById("acessosHoje").textContent = dados.acessosHoje || 0;
+        document.getElementById("autorizadosHoje").textContent = dados.autorizadosHoje || 0;
+        document.getElementById("negadosHoje").textContent = dados.negadosHoje || 0;
+        document.getElementById("cartoesAtivos").textContent = (dados.cartoesAtivos || 0) + "/" + (dados.totalCartoes || 0);
+        document.getElementById("escaninhosOnline").textContent = (dados.escaninhosOnline || 0) + "/" + (dados.totalEscaninhos || 0);
+        preencherSelect("escaninhoCartao", dados.escaninhos || []);
+        preencherSelect("escaninhoPin", dados.escaninhos || []);
+        montarEscaninhos(dados.escaninhos || []);
+        montarCartoes(dados.cartoes || []);
+        montarAcessos(dados.acessos || []);
+        atualizarCadastro();
+        document.getElementById("atualizacao").textContent = "Atualizado em: " + dados.atualizadoEm;
+      }
+
+      function preencherSelect(id, escaninhos) {
+        const select = document.getElementById(id);
+        const valor = select.value;
+        select.replaceChildren();
+        escaninhos.forEach(function(item) {
+          const option = document.createElement("option");
+          option.value = item.id;
+          option.textContent = item.nome + " (" + item.id + ")";
+          select.appendChild(option);
+        });
+        if (valor && [...select.options ].some(opcao => opcao.value === valor)) select.value = valor;
+      }
+
+      function montarEscaninhos(escaninhos) {
+        const lista = document.getElementById("listaEscaninhos");
+        lista.replaceChildren();
+        escaninhos.forEach(function(item) {
+          const card = document.createElement("div");
+          card.className = "escaninho";
+          const topo = document.createElement("div");
+          topo.className = "escaninho-topo";
+          const nome = document.createElement("div");
+          nome.className = "escaninho-nome";
+          nome.textContent = item.nome + " (" + item.id + ")";
+          const status = document.createElement("span");
+          status.className = "badge " + (item.online ? "verde" : "vermelho");
+          status.textContent = item.online ? "ONLINE" : "OFFLINE";
+          topo.appendChild(nome);
+          topo.appendChild(status);
+          card.appendChild(topo);
+          const info = document.createElement("div");
+          info.className = "escaninho-info";
+          adicionarInfo(info, "PIN", item.pinConfigurado ? "CONFIGURADO" : "NÃO CONFIGURADO");
+          if (item.pinAtualizadoEm) adicionarInfo(info, "PIN atualizado", item.pinAtualizadoEm);
+          if (item.dispositivo) {
+            adicionarInfo(info, "Dispositivo", item.dispositivo.id);
+            adicionarInfo(info, "Último contato", item.dispositivo.ultimaComunicacao);
+            adicionarInfo(info, "IP", item.dispositivo.ip);
+            adicionarInfo(info, "RSSI", item.dispositivo.rssi !== "" ? item.dispositivo.rssi + " dBm" : "—");
+          }
+          if (item.cadastro) adicionarInfo(info, "Cadastro", "Aguardando cartão para " + item.cadastro.nome);
+          card.appendChild(info);
+          lista.appendChild(card);
+        });
+      }
+
+      function adicionarInfo(elemento, titulo, valor) {
+        const div = document.createElement("div");
+        div.textContent = titulo + ": " + (valor || "—");
+        elemento.appendChild(div);
+      }
+
+      function iniciarCadastro() {
+        const nome = document.getElementById("nomeCartao").value.trim();
+        const escaninho = document.getElementById("escaninhoCartao").value;
+        if (!nome) {
+          mostrarMensagem("mensagemCartao", "Digite o nome.", "vermelho-msg");
+          return;
+        }
+        google.script.run
+            .withSuccessHandler(function(resposta) {
+              mostrarMensagem("mensagemCartao", resposta.mensagem, "amarelo-msg");
+              carregar();
+            })
+            .withFailureHandler(function(erro) {
+              mostrarMensagem("mensagemCartao", erro.message, "vermelho-msg");
+            })
+            .iniciarCadastroCartao(nome, escaninho);
+      }
+
+      function cancelarCadastro() {
+        const escaninho = document.getElementById("escaninhoCartao").value;
+        google.script.run
+            .withSuccessHandler(function() {
+              mostrarMensagem("mensagemCartao", "Cadastro cancelado.", "");
+              carregar();
+            })
+            .cancelarCadastroCartao(escaninho);
+      }
+
+      function atualizarCadastro() {
+        if (!dadosAtuais) return;
+        const escaninho = document.getElementById("escaninhoCartao").value;
+        const item = dadosAtuais.escaninhos.find(elemento => elemento.id === escaninho);
+        if (item && item.cadastro)
+          mostrarMensagem("mensagemCartao", "AGUARDANDO CARTÃO — " + item.cadastro.nome + " / " + item.id + ". Encoste o cartão no leitor.",
+                          "amarelo-msg");
+        else mostrarMensagem("mensagemCartao", "Informe o nome, escolha o escaninho e clique em Iniciar cadastro.", "");
+      }
+
+      function salvarPIN() {
+        const escaninho = document.getElementById("escaninhoPin").value;
+        const pin = document.getElementById("novoPin").value.trim();
+        if (!/^\d{6}$/.test(pin)) {
+          mostrarMensagem("mensagemPin", "O PIN precisa possuir exatamente 6 números.", "vermelho-msg");
+          return;
+        }
+        google.script.run
+            .withSuccessHandler(function(resposta) {
+              document.getElementById("novoPin").value = "";
+              mostrarMensagem("mensagemPin", resposta.mensagem, "verde-msg");
+              carregar();
+            })
+            .withFailureHandler(function(erro) {
+              mostrarMensagem("mensagemPin", erro.message, "vermelho-msg");
+            })
+            .salvarPinEscaninho(escaninho, pin);
+      }
+
+      function removerPIN() {
+        const escaninho = document.getElementById("escaninhoPin").value;
+        if (!confirm("Remover o PIN do " + escaninho + "?")) return;
+        google.script.run
+            .withSuccessHandler(function(resposta) {
+              mostrarMensagem("mensagemPin", resposta.mensagem, "");
+              carregar();
+            })
+            .removerPinEscaninho(escaninho);
+      }
+
+      function montarCartoes(cartoes) {
+        const tbody = document.getElementById("tabelaCartoes");
+        tbody.replaceChildren();
+        if (cartoes.length === 0) {
+          linhaVazia(tbody, 6, "Nenhum cartão cadastrado.");
+          return;
+        }
+        cartoes.forEach(function(cartao) {
+          const tr = document.createElement("tr");
+          td(tr, cartao.nome);
+          td(tr, cartao.uid);
+          td(tr, cartao.escaninho);
+          td(tr, cartao.cadastradoEm);
+          const tdStatus = document.createElement("td");
+          const badge = document.createElement("span");
+          badge.className = "badge " + (cartao.ativo ? "verde" : "vermelho");
+          badge.textContent = cartao.ativo ? "ATIVO" : "BLOQUEADO";
+          tdStatus.appendChild(badge);
+          tr.appendChild(tdStatus);
+          const acoes = document.createElement("td");
+          acoes.className = "acoes";
+          const bloquear = document.createElement("button");
+          bloquear.textContent = cartao.ativo ? "Bloquear" : "Ativar";
+          bloquear.onclick = function() {
+            google.script.run.withSuccessHandler(carregar).alterarStatusCartao(cartao.uid, cartao.escaninho, !cartao.ativo);
+          };
+          const excluir = document.createElement("button");
+          excluir.textContent = "Excluir";
+          excluir.className = "perigo";
+          excluir.onclick = function() {
+            if (!confirm("Excluir este cartão?")) return;
+            google.script.run.withSuccessHandler(carregar).excluirCartao(cartao.uid, cartao.escaninho);
+          };
+          acoes.appendChild(bloquear);
+          acoes.appendChild(excluir);
+          tr.appendChild(acoes);
+          tbody.appendChild(tr);
+        });
+      }
+
+      function montarAcessos(acessos) {
+        const tbody = document.getElementById("tabelaAcessos");
+        tbody.replaceChildren();
+        if (acessos.length === 0) {
+          linhaVazia(tbody, 6, "Nenhum acesso registrado.");
+          return;
+        }
+        acessos.forEach(function(acesso) {
+          const tr = document.createElement("tr");
+          td(tr, acesso.data);
+          td(tr, acesso.nome);
+          td(tr, acesso.uid);
+          td(tr, acesso.escaninho);
+          td(tr, acesso.metodo);
+          const status = document.createElement("td");
+          const badge = document.createElement("span");
+          badge.className = "badge " + classeStatus(acesso.status);
+          badge.textContent = acesso.status;
+          status.appendChild(badge);
+          tr.appendChild(status);
+          tbody.appendChild(tr);
+        });
+      }
+
+      function classeStatus(status) {
+        if (status === "AUTORIZADO") return "verde";
+        if (status === "CADASTRADO") return "cinza";
+        if (status === "BLOQUEADO") return "amarelo";
+        return "vermelho";
+      }
+
+      function td(tr, valor) {
+        const coluna = document.createElement("td");
+        coluna.textContent = valor || "—";
+        tr.appendChild(coluna);
+      }
+
+      function linhaVazia(tbody, colunas, mensagem) {
+        const tr = document.createElement("tr");
+        const coluna = document.createElement("td");
+        coluna.colSpan = colunas;
+        coluna.className = "vazio";
+        coluna.textContent = mensagem;
+        tr.appendChild(coluna);
+        tbody.appendChild(tr);
+      }
+
+      function mostrarMensagem(id, texto, classe) {
+        const elemento = document.getElementById(id);
+        elemento.className = "mensagem";
+        if (classe) elemento.classList.add(classe);
+        elemento.textContent = texto;
+      }
+
+      document.getElementById("novoPin").addEventListener("input", function() {
+        this.value = this.value.replace(/\D/g, "").slice(0, 6);
+      });
+      document.getElementById("escaninhoCartao").addEventListener("change", atualizarCadastro);
+      carregar();
+      setInterval(carregar, 5000);
+    </script>
+  </body>
+</html>
